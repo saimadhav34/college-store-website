@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="device-width, initial-scale=1.0">
+    <title>All Products - Vaagdevi Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="navbar">
+        <div class="logo">
+            <img src="images/Picsart_23-09-07_22-03-57-751.jpg" width="125px">
+        </div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="account.html">Account</a></li>
+            </ul>
+        </nav>
+        <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+    </div>
+</div>
+
+<!------ cart items details ------>        
+<div class="small-container cart-page">
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <a href="product-details1.html">
+                        <img src="images/buy-1.jpg">
+                    </a>
+                    <div>
+                        <p>Record Book VCE</p>
+                        <small>Price: RS.<span class="price">130.00</span></small>
+                        <br>
+                        <a href="javascript:void(0);" class="remove-btn">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td><input type="number" class="quantity" value="1" onchange="calculateTotal()"></td>
+            <td>RS.<span class="subtotal">130.00</span></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <a href="product-details2.html">
+                        <img src="images/buy-2.jpg">
+                    </a>
+                    <div>
+                        <p>Bonafide Certificate</p>
+                        <small>Price: RS.<span class="price">20.00</span></small>
+                        <br>
+                        <a href="javascript:void(0);" class="remove-btn">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td><input type="number" class="quantity" value="1" onchange="calculateTotal()"></td>
+            <td>RS.<span class="subtotal">20.00</span></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <a href="product-details3.html">
+                        <img src="images/memo%20form.jpg">
+                    </a>
+                    <div>
+                        <p>Application For Provisional Certificate and<br> Consolidated Marks Memo</p>
+                        <small>Price: RS.<span class="price">20.00</span></small>
+                        <br>
+                        <a href="javascript:void(0);" class="remove-btn">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td><input type="number" class="quantity" value="1" onchange="calculateTotal()"></td>
+            <td>RS.<span class="subtotal">20.00</span></td>
+        </tr>
+    </table>
+
+    <div class="total-price">
+        <table>
+            <tr>
+                <td>Subtotal</td>
+                <td>RS.<span id="subtotal">170.00</span></td>
+            </tr>
+            <tr>
+                <td>Tax</td>
+                <td>RS.<span id="tax">15.00</span></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>RS.<span id="total">185.00</span></td>
+            </tr>
+        </table> 
+    </div>
+
+    <!------- Place Order Button ------> 
+    <button id="placeOrderBtn" class="btn">Place Order</button>
+    <p id="orderMessage" style="display:none; color: green;"></p>
+    <p style="font-weight: bold;">Shop Timings: 10:00 AM - 4:00 PM</p>
+</div>
+
+<!------- footer ------> 
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download Our App</h3>
+                <p>Download App for Android and ios mobile phone.</p>
+                <div class="app-logo">
+                    <img src="images/play.png">
+                    <img src="images/app-store.png">
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src="images/v-white.jpg">
+                <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Stationary Accessible to the Many.</p>
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li>Coupons</li>
+                    <li>Blog Post</li>
+                    <li>Return Policy</li>
+                    <li>Join Affiliate</li>
+                </ul>
+            </div>
+            <div class="footer-col-4">
+                <h3>Follow us</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>YouTube</li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright 2023 - Sami Solutions</p>
+    </div>
+</div>
+
+<!------js for toggle menu and calculation------>       
+<script>
+    var MenuItems = document.getElementById("MenuItems");
+    MenuItems.style.maxHeight = "0px";
+
+    function menutoggle() {
+        if (MenuItems.style.maxHeight == "0px") {
+            MenuItems.style.maxHeight = "200px";
+        } else {
+            MenuItems.style.maxHeight = "0px";
+        }
+    }
+
+    function calculateTotal() {
+        // Get all the price and quantity elements
+        const prices = document.querySelectorAll('.price');
+        const quantities = document.querySelectorAll('.quantity');
+        const subtotals = document.querySelectorAll('.subtotal');
+        
+        let subtotalValue = 0;
+        
+        // Loop through each product and calculate the subtotal
+        for (let i = 0; i < prices.length; i++) {
+            const price = parseFloat(prices[i].textContent);
+            const quantity = parseInt(quantities[i].value);
+            const subtotal = price * quantity;
+
+            // Update the subtotal for each item
+            subtotals[i].textContent = subtotal.toFixed(2);
+
+            // Add to total subtotal value
+            subtotalValue += subtotal;
+        }
+        
+        // Update the subtotal, tax, and total values on the page
+        const tax = 15; // You can change this if tax is dynamic
+        const totalValue = subtotalValue + tax;
+        
+        document.getElementById('subtotal').textContent = subtotalValue.toFixed(2);
+        document.getElementById('total').textContent = totalValue.toFixed(2);
+    }
+
+    // Function to remove a product row
+    function removeProduct(event) {
+        const row = event.target.closest('tr');
+        row.remove(); // Remove the row of the clicked "Remove" link
+        calculateTotal(); // Recalculate the total after removing the product
+    }
+    
+    // Add event listeners to all "Remove" buttons
+    document.querySelectorAll('.remove-btn').forEach(button => {
+        button.addEventListener('click', removeProduct);
+    });
+    
+    // Place Order button functionality
+    document.getElementById('placeOrderBtn').onclick = function() {
+        document.getElementById('orderMessage').textContent = "Order placed successfully!";
+        document.getElementById('orderMessage').style.display = "block";
+    };
+
+    // Call the function once on page load to ensure the total is calculated initially
+    window.onload = calculateTotal;
+</script>
+
+</body>
+</html>
+
+
